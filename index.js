@@ -1,9 +1,16 @@
 const summarizeBtnEl = document.getElementById("summarize-btn")
 const textInputAreaEl = document.getElementById("text-input-area")
 const summaryOutputAreaEl = document.getElementById("summary-output-area")
+const rangeInputEl = document.getElementById("range-input")
+const summarySizeTexEl = document.getElementById("summary-size-text")
+const copyBtnEl = document.getElementById("copy-btn")
+const clearBtnEl = document.getElementById("clear-btn")
 
-const size = 20 
+let size = 20 
 summarizeBtnEl.addEventListener('click', summarize)
+rangeInputEl.addEventListener('input', updateSize)
+copyBtnEl.addEventListener('click', copy)
+clearBtnEl.addEventListener('click', clear)
 
 async function summarize() {
   try {
@@ -34,5 +41,19 @@ async function summarize() {
     console.log(err)
   }
   
+}
+
+function updateSize() {
+  size = rangeInputEl.value
+  summarySizeTexEl.textContent = `Summary Size: ${size} Words`
+}
+
+function copy() {
+  navigator.clipboard.writeText(summaryOutputAreaEl.value)
+}
+
+function clear() {
+  textInputAreaEl.value = ''
+  summaryOutputAreaEl.value = ''
 }
 
