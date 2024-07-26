@@ -1,0 +1,15 @@
+{
+  "name": "Scrim-s01aepv3af",
+  "description": "https://v2.scrimba.com/s01aepv3af",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.24.3",
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,38 @@
+const summarizeBtnEl = document.getElementById("summarize-btn")
+const textInputAreaEl = document.getElementById("text-input-area")
+const summaryOutputAreaEl = document.getElementById("summary-output-area")
+
+const size = 20 
+summarizeBtnEl.addEventListener('click', summarize)
+
+async function summarize() {
+  try {
+    const text = textInputAreaEl.value
+    const messages = [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": `You are a text summarizer. Take the following text and give me back a summary of it that is of length ${size} words. Just give me the summary. Here is the text: <text>${text}</text>`
+              }
+            ]
+          }
+        ]
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(messages)
+    }
+
+    const response = await fetch('https://my-sum-worker.shant.workers.dev/', options)
+    const summary = await response.json()
+    summaryOutputAreaEl.value = summary
+  } catch(err) {
+    console.log(err)
+  }
+  
+}
+

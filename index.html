@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img class="header-image" src="dog.png" alt="cool dog">
+            <h1 class="header-title">Summarizer</h1>
+        </header>
+        <main>
+            <section>
+                <textarea id="text-input-area" placeholder="Paste text here" autofocus></textarea>
+                <div class="controls">
+                    <div class="range-container">
+                        <div class="range-group">
+                            <span class="range-label">1</span>
+                            <input id="range-input" type="range" class="range-input" min="1" max="100">
+                            <span class="range-label">100</span>
+                        </div>
+                        <span id="summary-size-text" class="summary-size-text">Summary Size: 20 Words</span>
+                    </div>
+                    <button id="summarize-btn" class="btn summarize-btn">Summarize</button>
+                </div>
+            </section>
+            <section>
+                <textarea id="summary-output-area" placeholder="See summary here"></textarea>
+                <div class="controls">
+                    <button id="copy-btn" class="btn btn-full-width">Copy</button>
+                    <button id="clear-btn" class="btn btn-full-width">Clear</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
