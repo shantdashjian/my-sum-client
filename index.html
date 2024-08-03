@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summarizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+	<title>Summarizer</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <img class="header-image" src="dog.png" alt="cool dog">
-            <h1 class="header-title">Summarizer</h1>
-        </header>
-        <main>
-            <section>
-                <textarea id="text-input-area" placeholder="Paste text here" autofocus></textarea>
-                <div class="controls">
-                    <div class="range-container">
-                        <div class="range-group">
-                            <span class="range-label">1</span>
-                            <input id="range-input" type="range" class="range-input" min="1" max="100" value="20">
-                            <span class="range-label">100</span>
-                        </div>
-                        <span id="summary-size-text" class="summary-size-text">Summary Size: 20 Words</span>
-                    </div>
-                    <button id="summarize-btn" class="btn summarize-btn">Summarize</button>
-                </div>
-            </section>
-            <section>
-                <textarea id="summary-output-area" placeholder="See summary here"></textarea>
-                <div class="controls">
-                    <button id="copy-btn" class="btn btn-full-width">Copy</button>
-                    <button id="clear-btn" class="btn btn-full-width">Clear</button>
-                </div>
-            </section>
-        </main>
-    </div>
-    <script type="module" src="index.js"></script>
+	<div class="container">
+		<header>
+			<img class="header-image" src="images/cool-dog.webp" alt="Cool dog with sunglasses on">
+			<h1 class="header-title">
+				<span class="header-title-line-1">The</span>
+				<span class="header-title-line-2">Summarizer</span>
+			</h1>
+		</header>
+		<main>
+			<section>
+				<textarea id="text-input-area" placeholder="Paste text here" aria-label="Paste text here to summarize"></textarea>
+				<div class="controls">
+					<div id="summary-length-container" class="summary-length-container disabled">
+						<div class="summary-length-group">
+							<span class="summary-length-min-label">1</span>
+							<input type="range" id="summary-length-input" class="summary-length-input" min="1" max="100" value="20" aria-labelledby="summary-length-text"
+							 disabled>
+							<span class="summary-length-max-label">100</span>
+						</div>
+						<span id="summary-length-text" class="summary-length-text">Summary Length: 20 Words</span>
+					</div>
+					<button id="summarize-btn" class="btn summarize-btn" disabled>Summarize</button>
+				</div>
+			</section>
+			<section id="summary-output-section" class="summary-output-section">
+				<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text" disabled></textarea>
+				<div class="controls">
+					<button id="copy-btn" class="btn btn-full-width" disabled>Copy</button>
+					<button id="clear-btn" class="btn btn-full-width" disabled>Clear</button>
+				</div>
+			</section>
+			<section id="loading-section" class="loading-section">
+				<img src="images/loading-spinner.svg" alt="Loading spinner">
+				<div id="loading-message" class="loading-message">Summarizing...</div>
+			</section>
+			<section id="error-section" class="error-section">
+				<div id="error-message" class="error-message">Message</div>
+			</section>
+		</main>
+	</div>
+	<script type="module" src="index.js"></script>
 </body>
 
 </html>
