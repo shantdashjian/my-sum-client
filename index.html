@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+<head>
 	<title>Summarizer</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +22,14 @@
 		</header>
 		<main>
 			<section>
-				<textarea id="text-input-area" placeholder="Paste text here" aria-label="Paste text here to summarize"></textarea>
+				<textarea id="text-input-area" placeholder="Paste text here"
+					aria-label="Paste text here to summarize"></textarea>
 				<div class="controls">
 					<div id="summary-length-container" class="summary-length-container disabled">
 						<div class="summary-length-group">
 							<span class="summary-length-min-label">1</span>
-							<input type="range" id="summary-length-input" class="summary-length-input" min="1" max="100" value="20" aria-labelledby="summary-length-text"
-							 disabled>
+							<input type="range" id="summary-length-input" class="summary-length-input" min="1" max="100"
+								value="20" aria-labelledby="summary-length-text" disabled>
 							<span class="summary-length-max-label">100</span>
 						</div>
 						<span id="summary-length-text" class="summary-length-text">Summary Length: 20 Words</span>
@@ -37,7 +38,8 @@
 				</div>
 			</section>
 			<section id="summary-output-section" class="summary-output-section">
-				<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text" disabled></textarea>
+				<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text"
+					disabled></textarea>
 				<div class="controls">
 					<button id="copy-btn" class="btn btn-full-width" disabled>Copy</button>
 					<button id="clear-btn" class="btn btn-full-width" disabled>Clear</button>
