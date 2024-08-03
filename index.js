@@ -119,7 +119,7 @@ function startLoading() {
 }
 
 function endLoading() {
-    summaryOutputSection.style.display = 'block'
+    summaryOutputSection.style.display = 'flex'
     loadingSection.style.display = 'none'
 }
 
