@@ -26,10 +26,14 @@ body {
     background: var(--background-color);
 }
 
-/* Layout Containers */
-.container {
+/* Utility Classes */
+.flex-column {
     display: flex;
     flex-direction: column;
+}
+
+/* Layout Containers */
+.container {
     align-items: center;
     height: 100vh;
 }
@@ -45,8 +49,6 @@ main {
 
 section {
     width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header Styles */
@@ -98,8 +100,6 @@ textarea::placeholder {
 
 /* Controls Section */
 .controls {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     gap: 0.8em;
     width: 100%;
@@ -108,8 +108,6 @@ textarea::placeholder {
 /* Summary Length Controls */
 .summary-length-container {
     flex-grow: 0.8;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
@@ -236,21 +234,21 @@ textarea:disabled::placeholder {
 }
 
 .summary-content,
-.loading-section {
+.loading-section,
+.error-section {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .summary-content {
     z-index: 1;
 }
 
-.loading-section, .error-section {
+.loading-section,
+.error-section {
     display: none;
     z-index: 2;
     justify-content: center;
@@ -265,7 +263,8 @@ textarea:disabled::placeholder {
     height: auto;
 }
 
-.loading-message, .error-message {
+.loading-message,
+.error-message {
     margin-top: 1em;
     font-weight: bold;
 }

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="flex-column container">
 		<header>
 			<img class="header-image" src="images/cool-dog.webp" alt="Cool dog with sunglasses on">
 			<h1 class="header-title">
@@ -22,11 +22,11 @@
 			</h1>
 		</header>
 		<main>
-			<section class="text-input-area-section">
+			<section class="flex-column text-input-area-section">
 				<textarea id="text-input-area" placeholder="Paste text here"
 					aria-label="Paste text here to summarize"></textarea>
-				<div class="controls">
-					<div id="summary-length-container" class="summary-length-container disabled">
+				<div class="flex-column controls">
+					<div id="summary-length-container" class="flex-column summary-length-container disabled">
 						<div class="summary-length-group">
 							<span class="summary-length-min-label">1</span>
 							<input type="range" id="summary-length-input" class="summary-length-input" min="1" max="100"
@@ -38,19 +38,20 @@
 					<button id="summarize-btn" class="btn summarize-btn" disabled>Summarize</button>
 				</div>
 			</section>
-			<section id="summary-output-section" class="summary-output-section">
-				<div id="summary-content" class="summary-content">
-					<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text" disabled></textarea>
-					<div class="controls">
+			<section id="summary-output-section" class="flex-column summary-output-section">
+				<div id="summary-content" class="flex-column summary-content">
+					<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text"
+						disabled></textarea>
+					<div class="flex-column controls">
 						<button id="copy-btn" class="btn btn-full-width" disabled>Copy</button>
 						<button id="clear-btn" class="btn btn-full-width" disabled>Clear</button>
 					</div>
 				</div>
-				<div id="loading-section" class="loading-section" aria-live="polite">
+				<div id="loading-section" class="flex-column loading-section" aria-live="polite">
 					<img src="images/loading-spinner.svg" alt="Loading spinner">
 					<div id="loading-message" class="loading-message">Summarizing...</div>
 				</div>
-				<div id="error-section" class="error-section" aria-live="assertive">
+				<div id="error-section" class="flex-column error-section" aria-live="assertive">
 					<div id="error-message" class="error-message"></div>
 				</div>
 			</section>
