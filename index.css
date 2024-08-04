@@ -184,11 +184,11 @@ textarea:disabled::placeholder {
 
 /* Copy States */
 .copied {
-    background-color: var(--copied-background-color) !important; 
+    background-color: var(--copied-background-color) !important;
 }
 
 .failed {
-    background-color: var(--failed-background-color) !important; 
+    background-color: var(--failed-background-color) !important;
 }
 
 /* Slider Thumb Styles */
