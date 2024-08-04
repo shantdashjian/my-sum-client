@@ -5,6 +5,8 @@
     --background-color: #83B0BD;
     --input-background-color: #FCD9D3;
     --button-background-color: #F9B759;
+    --copied-background-color: #83f5bc;
+    --failed-background-color: #ffa3a3;
     --hover-color: #fba122;
     --focus-color: #9F570A;
     --slider-thumb-color: #9F570A;
@@ -178,6 +180,15 @@ input[type="range"]:focus,
 
 textarea:disabled::placeholder {
     color: var(--disabled-color);
+}
+
+/* Copy States */
+.copied {
+    background-color: var(--copied-background-color) !important; 
+}
+
+.failed {
+    background-color: var(--failed-background-color) !important; 
 }
 
 /* Slider Thumb Styles */
