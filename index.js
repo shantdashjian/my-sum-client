@@ -8,7 +8,6 @@ const summaryLengthContainer = document.getElementById('summary-length-container
 const summaryLengthInput = document.getElementById('summary-length-input')
 const summaryLengthText = document.getElementById('summary-length-text')
 const summarizeBtn = document.getElementById('summarize-btn')
-const summaryOutputSection = document.getElementById('summary-output-section')
 const summaryContent = document.getElementById('summary-content')
 const summaryOutputArea = document.getElementById('summary-output-area')
 const copyBtn = document.getElementById('copy-btn')
