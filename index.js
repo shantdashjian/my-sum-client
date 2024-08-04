@@ -9,6 +9,7 @@ const summaryLengthInput = document.getElementById('summary-length-input')
 const summaryLengthText = document.getElementById('summary-length-text')
 const summarizeBtn = document.getElementById('summarize-btn')
 const summaryOutputSection = document.getElementById('summary-output-section')
+const summaryContent = document.getElementById('summary-content')
 const summaryOutputArea = document.getElementById('summary-output-area')
 const copyBtn = document.getElementById('copy-btn')
 const clearBtn = document.getElementById('clear-btn')
@@ -51,7 +52,7 @@ async function summarize() {
         const response = await fetch(workerUrl, options)
         endLoading()
         if (!response.ok) {
-            throw new Error(response.error)
+            throw new Error(response.statusText)
         }
         const summary = await response.json()
         summaryOutputArea.value = summary
@@ -66,9 +67,9 @@ async function summarize() {
 async function copy() {
     try {
         await navigator.clipboard.writeText(summaryOutputArea.value)
-        showCopyFeedback('✅ Copied', 'success')
+        showCopyFeedback('😄 Copied', 'success')
     } catch (err) {
-        showCopyFeedback('⚠️ Failed', 'failure')
+        showCopyFeedback('😔 Failed', 'failure')
     }
 }
 
@@ -114,22 +115,23 @@ function updateSummaryLengthText() {
 
 // Helper Functions
 function startLoading() {
-    summaryOutputSection.style.display = 'none'
+    summaryContent.style.display = 'none'
     loadingSection.style.display = 'flex'
 }
 
 function endLoading() {
-    summaryOutputSection.style.display = 'flex'
     loadingSection.style.display = 'none'
+    summaryContent.style.display = 'flex'
 }
 
 function handleError(err) {
-    loadingSection.style.display = 'none'
+    endLoading()
+    summaryContent.style.display = 'none'
     errorMessage.textContent = `There was an error processing the text: ${err}`
-    errorSection.style.display = 'block'
+    errorSection.style.display = 'flex'
     setTimeout(() => {
-        summaryOutputSection.style.display = 'block'
         errorSection.style.display = 'none'
+        summaryContent.style.display = 'flex'
     }, messageDisplayTime)
 }
 
@@ -138,7 +140,7 @@ function showCopyFeedback(message, status) {
     const originalColor = copyBtn.style.backgroundColor;
 
     copyBtn.textContent = message;
-    copyBtn.style.backgroundColor = status === 'success' ? 'green' : 'red';
+    copyBtn.style.backgroundColor = status === 'success' ? 'lime' : 'indianred';
     copyBtn.setAttribute('aria-label', message);
 
     setTimeout(() => {

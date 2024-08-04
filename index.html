@@ -21,7 +21,7 @@
 			</h1>
 		</header>
 		<main>
-			<section>
+			<section class="text-input-area-section">
 				<textarea id="text-input-area" placeholder="Paste text here"
 					aria-label="Paste text here to summarize"></textarea>
 				<div class="controls">
@@ -38,22 +38,24 @@
 				</div>
 			</section>
 			<section id="summary-output-section" class="summary-output-section">
-				<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text"
-					disabled></textarea>
-				<div class="controls">
-					<button id="copy-btn" class="btn btn-full-width" disabled>Copy</button>
-					<button id="clear-btn" class="btn btn-full-width" disabled>Clear</button>
+				<div id="summary-content" class="summary-content">
+					<textarea id="summary-output-area" placeholder="See summary here" aria-label="Summary of text" disabled></textarea>
+					<div class="controls">
+						<button id="copy-btn" class="btn btn-full-width" disabled>Copy</button>
+						<button id="clear-btn" class="btn btn-full-width" disabled>Clear</button>
+					</div>
 				</div>
-			</section>
-			<section id="loading-section" class="loading-section">
-				<img src="images/loading-spinner.svg" alt="Loading spinner">
-				<div id="loading-message" class="loading-message">Summarizing...</div>
-			</section>
-			<section id="error-section" class="error-section">
-				<div id="error-message" class="error-message">Message</div>
+				<div id="loading-section" class="loading-section">
+					<img src="images/loading-spinner.svg" alt="Loading spinner">
+					<div id="loading-message" class="loading-message">Summarizing...</div>
+				</div>
+				<div id="error-section" class="error-section">
+					<div id="error-message" class="error-message"></div>
+				</div>
 			</section>
 		</main>
 	</div>
+
 	<script type="module" src="index.js"></script>
 </body>
 
