@@ -194,7 +194,6 @@ textarea:disabled::placeholder {
 /* Slider Thumb Styles */
 /* WebKit (Chrome, Safari, newer versions of Edge) */
 .summary-length-input::-webkit-slider-thumb {
-    -webkit-appearance: none;
     appearance: none;
     width: 1em;
     height: 1em;
