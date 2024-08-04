@@ -136,16 +136,16 @@ function handleError(err) {
 }
 
 function showCopyFeedback(message, status) {
-    const originalText = copyBtn.textContent;
-    const originalColor = copyBtn.style.backgroundColor;
+    const originalText = copyBtn.textContent
+    const originalColor = copyBtn.style.backgroundColor
 
-    copyBtn.textContent = message;
-    copyBtn.style.backgroundColor = status === 'success' ? 'lime' : 'indianred';
-    copyBtn.setAttribute('aria-label', message);
+    copyBtn.textContent = message
+    copyBtn.style.backgroundColor = status === 'success' ? 'lime' : 'indianred'
+    copyBtn.setAttribute('aria-label', message)
 
     setTimeout(() => {
-        copyBtn.textContent = originalText;
-        copyBtn.style.backgroundColor = originalColor;
-        copyBtn.removeAttribute('aria-label');
-    }, messageDisplayTime);
+        copyBtn.textContent = originalText
+        copyBtn.style.backgroundColor = originalColor
+        copyBtn.removeAttribute('aria-label')
+    }, messageDisplayTime)
 }
