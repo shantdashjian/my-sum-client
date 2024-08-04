@@ -36,7 +36,7 @@ async function summarize() {
                 'content': [
                     {
                         'type': 'text',
-                        'text': `You are a text summarizer. Take the following text and give me back a summary of it that is of length ${summaryLength} words. Just give me the text summary. Never say things like "here is the summary". Here is the text: <text>${text}</text>`
+                        'text': `You are a text summarizer. Take the following text and give me back a summary of it that is of length ${summaryLength} words. Just give me the text summary. Never say things like "here is the summary". If the text is gibberish, just return the word Gibberish. Here is the text: <text>${text}</text>`
                     }
                 ]
             }
