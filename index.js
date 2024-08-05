@@ -18,7 +18,7 @@ const errorMessage = document.getElementById('error-message')
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', focusOnLoad)
-textInputArea.addEventListener('input', enableControls)
+textInputArea.addEventListener('input', seeTextTopAndEnableControls)
 summaryLengthInput.addEventListener('input', updateSummaryLengthText)
 summarizeBtn.addEventListener('click', summarize)
 copyBtn.addEventListener('click', copy)
@@ -82,6 +82,17 @@ function clear() {
 // UI Control Functions
 function focusOnLoad() {
     textInputArea.focus()
+}
+
+function seeTextTopAndEnableControls() {
+    seeTextTop()
+    enableControls()
+}
+
+function seeTextTop() {
+    setTimeout(() => {
+        textInputArea.scrollTop = 0
+    }, 0)
 }
 
 function enableControls() {
