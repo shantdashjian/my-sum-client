@@ -55,12 +55,16 @@ async function summarize() {
         }
         const summary = await response.json()
         summaryOutputArea.value = summary
-        summaryOutputArea.disabled = false
+        enableSummayOutputArea()
         enableCopy()
         copyBtn.focus()
     } catch (err) {
         handleError(err)
     }
+}
+
+function enableSummayOutputArea() {
+    summaryOutputArea.disabled = false
 }
 
 async function copy() {
