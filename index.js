@@ -1,6 +1,6 @@
 // Constants
 const workerUrl = 'https://the-summarizer-worker.shant.workers.dev/'
-const messageDisplayTime = 3000
+const messageDisplayTime = 5000
 
 // DOM Element Selectors
 const textInputArea = document.getElementById('text-input-area')
@@ -15,6 +15,7 @@ const clearBtn = document.getElementById('clear-btn')
 const loadingSection = document.getElementById('loading-section')
 const errorSection = document.getElementById('error-section')
 const errorMessage = document.getElementById('error-message')
+const dismissErrorBtn = document.getElementById('dismiss-error-btn')
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', focusOnLoad)
@@ -23,6 +24,7 @@ summaryLengthInput.addEventListener('input', updateSummaryLengthText)
 summarizeBtn.addEventListener('click', summarize)
 copyBtn.addEventListener('click', copy)
 clearBtn.addEventListener('click', clear)
+dismissErrorBtn.addEventListener('click', dismissError)
 
 // Main Functions
 async function summarize() {
@@ -50,10 +52,10 @@ async function summarize() {
         startLoading()
         const response = await fetch(workerUrl, options)
         endLoading()
-        if (!response.ok) {
-            throw new Error(response.statusText)
-        }
         const summary = await response.json()
+        if (!response.ok) {
+            throw new Error(summary.error)
+        }
         summaryOutputArea.value = summary
         enableSummayOutputArea()
         enableCopy()
@@ -73,10 +75,19 @@ async function copy() {
 }
 
 function clear() {
+    textInputArea.disabled = false
     textInputArea.value = ''
     summaryOutputArea.value = ''
     textInputArea.focus()
     disableAllControls()
+}
+
+function dismissError() {
+    errorSection.style.display = 'none'
+    summaryContent.style.display = 'flex'
+    textInputArea.disabled = false
+    textInputArea.value = ''
+    textInputArea.focus()
 }
 
 // UI Control Functions
@@ -140,13 +151,11 @@ function endLoading() {
 
 function handleError(err) {
     endLoading()
+    textInputArea.disabled = true
+    disableAllControls()
     summaryContent.style.display = 'none'
     errorMessage.textContent = `There was an error processing the text: ${err}`
     errorSection.style.display = 'flex'
-    setTimeout(() => {
-        errorSection.style.display = 'none'
-        summaryContent.style.display = 'flex'
-    }, messageDisplayTime)
 }
 
 function showCopyFeedback(message, status) {

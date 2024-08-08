@@ -279,6 +279,12 @@ textarea:disabled::placeholder {
     font-weight: bold;
 }
 
+.error-message {
+    width: 100%;
+    word-wrap: break-word;
+    margin-bottom: 1em;
+}
+
 /* Media Queries */
 @media screen and (min-width: 360px) {
     .controls {
