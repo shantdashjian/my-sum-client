@@ -63,10 +63,6 @@ async function summarize() {
     }
 }
 
-function enableSummayOutputArea() {
-    summaryOutputArea.disabled = false
-}
-
 async function copy() {
     try {
         await navigator.clipboard.writeText(summaryOutputArea.value)
@@ -125,6 +121,10 @@ function enableCopy() {
 
 function updateSummaryLengthText() {
     summaryLengthText.textContent = `Summary Length: ${summaryLengthInput.value} Words`
+}
+
+function enableSummayOutputArea() {
+    summaryOutputArea.disabled = false
 }
 
 // Helper Functions
