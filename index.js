@@ -1,6 +1,6 @@
 // Constants
 const workerUrl = 'https://the-summarizer-worker.shant.workers.dev/'
-const messageDisplayTime = 5000
+const feedbackDisplayTime = 5000
 
 // DOM Element Selectors
 const textInputArea = document.getElementById('text-input-area')
@@ -165,5 +165,5 @@ function showCopyFeedback(message, status) {
     setTimeout(() => {
         copyBtn.classList.remove(feedbackClass)
         copyBtn.textContent = 'Copy'
-    }, messageDisplayTime)
+    }, feedbackDisplayTime)
 }
