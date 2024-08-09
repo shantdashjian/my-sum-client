@@ -2,31 +2,33 @@
 const workerUrl = 'https://the-summarizer-worker.shant.workers.dev/'
 const feedbackDisplayTime = 5000
 
-// DOM Element Selectors
+// Element Selectors
 const textInputArea = document.getElementById('text-input-area')
 const summaryLengthContainer = document.getElementById('summary-length-container')
 const summaryLengthInput = document.getElementById('summary-length-input')
 const summaryLengthText = document.getElementById('summary-length-text')
-const summarizeBtn = document.getElementById('summarize-btn')
+const summarizeButton = document.getElementById('summarize-button')
 const summaryContent = document.getElementById('summary-content')
 const summaryOutputArea = document.getElementById('summary-output-area')
-const copyBtn = document.getElementById('copy-btn')
-const clearBtn = document.getElementById('clear-btn')
+const copyButton = document.getElementById('copy-button')
+const clearButton = document.getElementById('clear-button')
 const loadingSection = document.getElementById('loading-section')
 const errorSection = document.getElementById('error-section')
 const errorMessage = document.getElementById('error-message')
-const dismissErrorBtn = document.getElementById('dismiss-error-btn')
+const dismissErrorButton = document.getElementById('dismiss-error-button')
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', focusOnLoad)
-textInputArea.addEventListener('input', seeTextTopAndEnableControls)
+// Button Event Listeners
+summarizeButton.addEventListener('click', summarize)
+copyButton.addEventListener('click', copy)
+clearButton.addEventListener('click', clear)
+dismissErrorButton.addEventListener('click', dismissError)
+
+// Other Event Listeners
+document.addEventListener('DOMContentLoaded', focusOnTextInputArea)
+textInputArea.addEventListener('input', scrollTextAreaToTopAndEnableControls)
 summaryLengthInput.addEventListener('input', updateSummaryLengthText)
-summarizeBtn.addEventListener('click', summarize)
-copyBtn.addEventListener('click', copy)
-clearBtn.addEventListener('click', clear)
-dismissErrorBtn.addEventListener('click', dismissError)
 
-// Main Functions
+// Button Event Handlers
 async function summarize() {
     try {
         const summaryLength = summaryLengthInput.value
@@ -59,9 +61,9 @@ async function summarize() {
         summaryOutputArea.value = summary
         enableSummayOutputArea()
         enableCopy()
-        copyBtn.focus()
-    } catch (err) {
-        handleError(err)
+        focusOnCopyButton()
+    } catch (error) {
+        handleError(error)
     }
 }
 
@@ -75,32 +77,35 @@ async function copy() {
 }
 
 function clear() {
-    textInputArea.disabled = false
-    textInputArea.value = ''
-    summaryOutputArea.value = ''
-    textInputArea.focus()
+    clearTextInputArea()
+    clearSummaryOutputArea()
+    enableTextInputArea()
+    focusOnTextInputArea()
     disableAllControls()
 }
 
 function dismissError() {
-    errorSection.style.display = 'none'
-    summaryContent.style.display = 'flex'
-    textInputArea.disabled = false
-    textInputArea.value = ''
+    hideErrorSection()
+    displaySummaryContent()
+    clear()
+}
+
+// Other Event Handlers
+function focusOnTextInputArea() {
     textInputArea.focus()
 }
 
-// UI Control Functions
-function focusOnLoad() {
-    textInputArea.focus()
-}
-
-function seeTextTopAndEnableControls() {
-    seeTextTop()
+function scrollTextAreaToTopAndEnableControls() {
+    scrollTextAreaToTop()
     enableControls()
 }
 
-function seeTextTop() {
+function updateSummaryLengthText() {
+    summaryLengthText.textContent = `Summary Length: ${summaryLengthInput.value} Words`
+}
+
+// Helper Functions
+function scrollTextAreaToTop() {
     setTimeout(() => {
         textInputArea.scrollTop = 0
     }, 0)
@@ -108,62 +113,157 @@ function seeTextTop() {
 
 function enableControls() {
     if (textInputArea.value.trim() !== '') {
-        summaryLengthContainer.classList.remove('disabled')
-        summaryLengthInput.disabled = false
-        summarizeBtn.disabled = false
-        clearBtn.disabled = false
+        enableSummaryLengthContainer()
+        enableSummaryLengthInput()
+        enableSummarizeButton()
+        enableClearButton()
     } else {
         disableAllControls()
     }
 }
 
 function disableAllControls() {
-    summaryLengthContainer.classList.add('disabled')
-    summaryLengthInput.disabled = true
-    summarizeBtn.disabled = true
-    summaryOutputArea.disabled = true
-    clearBtn.disabled = true
-    copyBtn.disabled = true
+    disableSummaryLengthContainer()
+    disableSummaryLengthInput()
+    disableSummarizeButton()
+    disableSummaryOutputArea()
+    disbaleClearButton()
+    disableCopyButton()
+}
+
+function startLoading() {
+    hideSummaryContent()
+    displayLoadingSection()
+}
+
+function endLoading() {
+    hideLoadingSection()
+    displaySummaryContent()
+}
+
+function handleError(error) {
+    endLoading()
+    disableTextInputArea()
+    disableAllControls()
+    hideSummaryContent()
+    setErrorMessageText(`There was an error processing the text: ${error.message}`)
+    displayErrorSection()
+}
+
+function showCopyFeedback(message, status) {
+    const feedbackClass = status === 'success' ? 'copied' : 'failed'
+    addClassToCopyButton(feedbackClass)
+    setCopyButtonText(message)
+    setTimeout(() => {
+        removeClassFromCopyButton(feedbackClass)
+        setCopyButtonText('Copy')
+    }, feedbackDisplayTime)
+}
+
+function focusOnCopyButton() {
+    copyButton.focus()
+}
+
+function displaySummaryContent() {
+    summaryContent.style.display = 'flex'
+}
+
+function displayLoadingSection() {
+    loadingSection.style.display = 'flex'
+}
+
+function displayErrorSection() {
+    errorSection.style.display = 'flex'
+}
+
+function hideLoadingSection() {
+    loadingSection.style.display = 'none'
+}
+
+function hideErrorSection() {
+    errorSection.style.display = 'none'
+}
+
+function hideSummaryContent() {
+    summaryContent.style.display = 'none'
+}
+
+function enableTextInputArea() {
+    textInputArea.disabled = false
+}
+
+function enableSummaryLengthContainer() {
+    summaryLengthContainer.classList.remove('disabled')
+}
+
+function enableClearButton() {
+    clearButton.disabled = false
+}
+
+function enableSummarizeButton() {
+    summarizeButton.disabled = false
+}
+
+function enableSummaryLengthInput() {
+    summaryLengthInput.disabled = false
 }
 
 function enableCopy() {
-    copyBtn.disabled = false
-}
-
-function updateSummaryLengthText() {
-    summaryLengthText.textContent = `Summary Length: ${summaryLengthInput.value} Words`
+    copyButton.disabled = false
 }
 
 function enableSummayOutputArea() {
     summaryOutputArea.disabled = false
 }
 
-// Helper Functions
-function startLoading() {
-    summaryContent.style.display = 'none'
-    loadingSection.style.display = 'flex'
+function disableCopyButton() {
+    copyButton.disabled = true
 }
 
-function endLoading() {
-    loadingSection.style.display = 'none'
-    summaryContent.style.display = 'flex'
+function disbaleClearButton() {
+    clearButton.disabled = true
 }
 
-function handleError(err) {
-    endLoading()
+function disableSummaryOutputArea() {
+    summaryOutputArea.disabled = true
+}
+
+function disableSummarizeButton() {
+    summarizeButton.disabled = true
+}
+
+function disableSummaryLengthInput() {
+    summaryLengthInput.disabled = true
+}
+
+function disableSummaryLengthContainer() {
+    summaryLengthContainer.classList.add('disabled')
+}
+
+function disableTextInputArea() {
     textInputArea.disabled = true
-    disableAllControls()
-    summaryContent.style.display = 'none'
-    errorMessage.textContent = `There was an error processing the text: ${err}`
-    errorSection.style.display = 'flex'
 }
 
-function showCopyFeedback(message, status) {
-    const feedbackClass = status === 'success' ? 'copied' : 'failed'
-    copyBtn.classList.add(feedbackClass)
-    copyBtn.textContent = message
-    setTimeout(() => {
-        copyBtn.classList.remove(feedbackClass)
-        copyBtn.textContent = 'Copy'
-    }, feedbackDisplayTime)
+function setErrorMessageText(text) {
+    errorMessage.textContent = text
+}
+
+function setCopyButtonText(text) {
+    copyButton.textContent = text
+}
+
+function clearTextInputArea() {
+    textInputArea.value = ''
+}
+
+function clearSummaryOutputArea() {
+    summaryOutputArea.value = ''
+}
+
+function removeClassFromCopyButton(className) {
+    copyButton.classList.remove(className)
+}
+
+function addClassToCopyButton(className) {
+    copyButton.classList.add(className)
 }

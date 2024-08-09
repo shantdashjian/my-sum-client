@@ -135,7 +135,7 @@ textarea::placeholder {
 }
 
 /* Buttons */
-.btn {
+.button {
     font-family: inherit;
     font-weight: bold;
     background-color: var(--button-background-color);
@@ -148,11 +148,11 @@ textarea::placeholder {
     justify-content: center;
 }
 
-.btn-full-width {
+.button-full-width {
     width: 100%;
 }
 
-.summarize-btn {
+.summarize-button {
     flex-basis: 40%;
     padding: 0.875em 1em;
 }
@@ -160,12 +160,12 @@ textarea::placeholder {
 /* Focus States */
 textarea:focus,
 input[type="range"]:focus,
-.btn:focus {
+.button:focus {
     outline: 2px solid var(--focus-color);
 }
 
 /* Hover States */
-.btn:not(:disabled):hover,
+.button:not(:disabled):hover,
 .summary-length-input:not(:disabled):hover {
     background-color: var(--hover-color);
     cursor: pointer;
