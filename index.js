@@ -1,6 +1,6 @@
 // Constants
 const workerUrl = 'https://the-summarizer-worker.shant.workers.dev/'
-const feedbackDisplayTime = 5000
+const feedbackDisplayTime = 3000
 
 // Element Selectors
 const textInputArea = document.getElementById('text-input-area')
